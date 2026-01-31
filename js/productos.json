@@ -1,0 +1,42 @@
+[
+    {
+        "id": "Goku Normal Gi",
+        "titulo": "Goku Normal Gi",
+        "imagen": "./img/Dragon_Ball/01.jpg",
+        "categoria": {
+            "nombre": "Dragon Ball",
+            "id": "Dragon Ball"
+        },
+        "precio": 300
+    },
+    {
+        "id": "Krilin Kienzan",
+        "titulo": "Krilin Kienzan",
+        "imagen": "./img/Dragon_Ball/02.jpg",
+        "categoria": {
+            "nombre": "Dragon Ball",
+            "id": "Dragon Ball"
+        },
+        "precio": 450
+    },
+    {
+        "id": "Muzan Trasformado",
+        "titulo": "Muzan Trasformado",
+        "imagen": "./img/Demon_Slayer/01.jpg",
+        "categoria": {
+            "nombre": "Demon Slayer",
+            "id": "Demon Slayer"
+        },
+        "precio": 350
+    },
+    {
+        "id": "Daki",
+        "titulo": "Daki",
+        "imagen": "./img/Demon_Slayer/02.jpg",
+        "categoria": {
+            "nombre": "Demon Slayer",
+            "id": "Demon Slayer"
+        },
+        "precio": 300
+    }
+]
