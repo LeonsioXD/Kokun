@@ -49,6 +49,27 @@
         </aside>
         <main>
             <h2 class="titulo-principal" id="titulo-principal">Todas las figuras</h2>
+            
+            
+            <div class="filtros-busqueda">
+                <div class="busqueda-contenedor">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="input-busqueda" placeholder="Buscar figuras..." class="input-busqueda">
+                </div>
+                <div class="filtros-contenedor">
+                    <select id="filtro-anime" class="filtro-select">
+                        <option value="todos">Todos los animes</option>
+                        <option value="Dragon Ball">Dragon Ball</option>
+                        <option value="Demon Slayer">Demon Slayer</option>
+                    </select>
+                    <select id="filtro-orden" class="filtro-select">
+                        <option value="defecto">Ordenar por</option>
+                        <option value="asc">A - Z</option>
+                        <option value="desc">Z - A</option>
+                    </select>
+                </div>
+            </div>
+
             <div id="contenedor-productos" class="contenedor-productos">
             </div>
         </main>
