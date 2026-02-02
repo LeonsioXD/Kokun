@@ -76,20 +76,20 @@ function eliminarDelCarrito(e) {
         text: "Producto eliminado",
         duration: 3000,
         close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true, 
         style: {
-          background: "linear-gradient(to right, #F88C3A, #F87411, #F88C3A)",
+          background: "linear-gradient(to right, #F88C3A, #F8EB3A)",
           borderRadius: "2rem",
           textTransform: "uppercase",
           fontSize: ".75rem"
         },
         offset: {
-            x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-            y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            x: '1.5rem',
+            y: '1.5rem'
           },
-        onClick: function(){} // Callback after click
+        onClick: function(){}
       }).showToast();
 
     const idBoton = e.currentTarget.id;
