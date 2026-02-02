@@ -15,6 +15,56 @@ let botonesAgregar = document.querySelectorAll(".producto-agregar");
 const numerito = document.querySelector("#numerito");
 
 
+const inputBusqueda = document.querySelector("#input-busqueda");
+const filtroAnime = document.querySelector("#filtro-anime");
+const filtroOrden = document.querySelector("#filtro-orden");
+
+
+function aplicarFiltros() {
+    const terminoBusqueda = inputBusqueda.value.toLowerCase();
+    const animeSeleccionado = filtroAnime.value;
+    const ordenSeleccionado = filtroOrden.value;
+    
+    let productosFiltrados = productos;
+    
+    
+    if (terminoBusqueda) {
+        productosFiltrados = productosFiltrados.filter(producto => 
+            producto.titulo.toLowerCase().includes(terminoBusqueda)
+        );
+    }
+    
+    
+    if (animeSeleccionado !== "todos") {
+        productosFiltrados = productosFiltrados.filter(producto => 
+            producto.categoria.id === animeSeleccionado
+        );
+        
+        
+        const productoCategoria = productos.find(producto => producto.categoria.id === animeSeleccionado);
+        if (productoCategoria) {
+            tituloPrincipal.innerText = productoCategoria.categoria.nombre;
+        }
+    } else {
+        tituloPrincipal.innerText = "Todas las figuras";
+    }
+    
+    
+    if (ordenSeleccionado === "asc") {
+        productosFiltrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    } else if (ordenSeleccionado === "desc") {
+        productosFiltrados.sort((a, b) => b.titulo.localeCompare(a.titulo));
+    }
+    
+    cargarProductos(productosFiltrados);
+}
+
+
+inputBusqueda.addEventListener("input", aplicarFiltros);
+filtroAnime.addEventListener("change", aplicarFiltros);
+filtroOrden.addEventListener("change", aplicarFiltros);
+
+
 botonesCategorias.forEach(boton => boton.addEventListener("click", () => {
     aside.classList.remove("aside-visible");
 }))
@@ -50,16 +100,14 @@ botonesCategorias.forEach(boton => {
         botonesCategorias.forEach(boton => boton.classList.remove("active"));
         e.currentTarget.classList.add("active");
 
-        if (e.currentTarget.id != "todos") {
-            const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
-            tituloPrincipal.innerText = productoCategoria.categoria.nombre;
-            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
-            cargarProductos(productosBoton);
+        
+        if (e.currentTarget.id !== "todos") {
+            filtroAnime.value = e.currentTarget.id;
         } else {
-            tituloPrincipal.innerText = "Todos los productos";
-            cargarProductos(productos);
+            filtroAnime.value = "todos";
         }
-
+        
+        aplicarFiltros();
     })
 });
 
@@ -92,7 +140,7 @@ function agregarAlCarrito(e) {
         position: "right",
         stopOnFocus: true,
         style: {
-          background: "linear-gradient(to right, #F88C3A, #F87411, #F88C3A)",
+          background: "linear-gradient(to right, #4b33a8, #785ce9)",
           borderRadius: "2rem",
           textTransform: "uppercase",
           fontSize: ".75rem"
