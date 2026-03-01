@@ -73,6 +73,37 @@
 
                 <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por tu compra.</p>
 
+                <div id="checkout-modal" class="checkout-modal hidden">
+                    <div class="checkout-modal-content">
+                        <span id="close-checkout" class="close-checkout">&times;</span>
+                        <h3>Detalles de Pago y Envío</h3>
+                        <form id="checkout-form">
+                            <div class="form-group">
+                                <label for="direccion">Dirección de Envío</label>
+                                <input type="text" id="direccion" required placeholder="Calle, Número, Ciudad">
+                            </div>
+                            <div class="form-group">
+                                <label for="tarjeta">Número de Tarjeta</label>
+                                <input type="text" id="tarjeta" required pattern="\d{16}" maxlength="16"
+                                    placeholder="0000 0000 0000 0000">
+                            </div>
+                            <div class="form-group checkout-doble">
+                                <div class="half">
+                                    <label for="vencimiento">Vencimiento (MM/AA)</label>
+                                    <input type="text" id="vencimiento" required pattern="\d{2}/\d{2}"
+                                        placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div class="half">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" required pattern="\d{3,4}" placeholder="123"
+                                        maxlength="4">
+                                </div>
+                            </div>
+                            <button type="submit" class="boton-confirmar-compra">Confirmar Compra</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>

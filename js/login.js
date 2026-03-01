@@ -43,6 +43,8 @@ const mostrarHistorial = (historial) => {
             productosList += `<p style="font-size: 0.85rem; color: var(--clr-main);">- ${p.titulo} x${p.cantidad} ($${p.precio})</p>`;
         });
 
+        const direccionTexto = compra.direccion ? `<div style="font-size: 0.85rem; color: var(--clr-main); margin-top: 0.5rem; border-top: 1px solid var(--clr-gray); padding-top: 0.5rem;"><strong>Envío a:</strong> ${compra.direccion}</div>` : '';
+
         compraDiv.innerHTML = `
             <div style="display: flex; justify-content: space-between; font-weight: bold; color: var(--clr-main);">
                 <span>Total: $${compra.total}</span>
@@ -51,6 +53,7 @@ const mostrarHistorial = (historial) => {
             <div style="margin-top: 0.5rem;">
                 ${productosList}
             </div>
+            ${direccionTexto}
         `;
         purchaseHistoryContainer.appendChild(compraDiv);
     });

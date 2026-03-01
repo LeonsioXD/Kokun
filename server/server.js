@@ -78,13 +78,14 @@ app.post('/api/login', async (req, res) => {
 
 app.post('/api/comprar', async (req, res) => {
     try {
-        const { usuarioId, productos, total } = req.body;
+        const { usuarioId, productos, total, direccion } = req.body;
 
         const nuevaCompra = {
             idCompra: new Date().getTime().toString(),
             fecha: new Date().toLocaleString(),
             productos,
-            total
+            total,
+            direccion
         };
 
         const usuarioActualizado = await Usuario.findByIdAndUpdate(

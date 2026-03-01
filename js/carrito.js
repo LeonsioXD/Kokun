@@ -128,8 +128,13 @@ function actualizarTotal() {
     total.innerText = `$${totalCalculado}`;
 }
 
-botonComprar.addEventListener("click", comprarCarrito);
-function comprarCarrito() {
+botonComprar.addEventListener("click", abrirCheckout);
+
+const checkoutModal = document.getElementById("checkout-modal");
+const closeCheckout = document.getElementById("close-checkout");
+const checkoutForm = document.getElementById("checkout-form");
+
+function abrirCheckout() {
     const usuarioLogueadoStr = localStorage.getItem('usuarioLogueado');
     if (!usuarioLogueadoStr) {
         Swal.fire({
@@ -144,9 +149,23 @@ function comprarCarrito() {
         });
         return;
     }
+    checkoutModal.classList.remove("hidden");
+}
 
+closeCheckout.addEventListener("click", () => {
+    checkoutModal.classList.add("hidden");
+});
+
+checkoutForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    comprarCarrito();
+});
+
+function comprarCarrito() {
+    const usuarioLogueadoStr = localStorage.getItem('usuarioLogueado');
     const usuario = JSON.parse(usuarioLogueadoStr);
     const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
+    const direccion = document.getElementById("direccion").value;
 
     fetch('http://localhost:3000/api/comprar', {
         method: 'POST',
@@ -156,7 +175,8 @@ function comprarCarrito() {
         body: JSON.stringify({
             usuarioId: usuario._id,
             productos: productosEnCarrito,
-            total: totalCalculado
+            total: totalCalculado,
+            direccion: direccion
         })
     })
         .then(res => res.json())
@@ -171,6 +191,9 @@ function comprarCarrito() {
 
             productosEnCarrito.length = 0;
             localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+
+            checkoutModal.classList.add("hidden");
+            checkoutForm.reset();
 
             contenedorCarritoVacio.classList.add("disabled");
             contenedorCarritoProductos.classList.add("disabled");
